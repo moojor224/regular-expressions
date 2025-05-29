@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "strict": false,
+        "alwaysStrict": false,
+        "target": "ES2024"
+    }
+}
