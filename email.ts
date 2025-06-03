@@ -13,10 +13,6 @@ a*bRULE => RULE{a,b}
 
 */
 
-function decToHex(dec: number): string {
-    return dec.toString(16).padStart(2, '0').toUpperCase();
-}
-
 // core ABNF definitions
 const ALPHA = "[a-zA-Z]";
 const BIT = "[01]";
