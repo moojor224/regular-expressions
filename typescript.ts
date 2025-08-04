@@ -24,7 +24,10 @@ export const phoneNumber = /(?:(?:\+|00)?\d{1,3})?[-.\s]?(?:(?:\(\d{1,4}\)|\d{1,
 // let|static|yield
 // future keywords: implements|interface|package|private|protected|public
 // specials: arguments|from
+const varBegin = "(?<=[^a-zA-Z_$]|^)(?!break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|false|finally|for|function|if|import|in|instanceof|new|null|return|super|switch|this|throw|true|try|typeof|var|void|while|with|await|enum";
+const strictOnly = "|let|static|yield|implements|interface|package|private|protected|public|arguments|from";
+const varEnd = ")[a-zA-Z_$][a-zA-Z_$\\d]*";
 /** matches a valid javascript variable name (no strict mode) */
-export const variableName = /(?<=[^a-zA-Z_$]|^)(?!break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|false|finally|for|function|if|import|in|instanceof|new|null|return|super|switch|this|throw|true|try|typeof|var|void|while|with|await|enum)[a-zA-Z_$][a-zA-Z_$\d]*/g;
+export const variableName = new RegExp(varBegin + varEnd, "g");
 /** matches a valid javascript variable name (strict mode) */
-export const strictVariableName = /(?<=[^a-zA-Z_$]|^)(?!break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|false|finally|for|function|if|import|in|instanceof|new|null|return|super|switch|this|throw|true|try|typeof|var|void|while|with|await|enum|let|static|yield|implements|interface|package|private|protected|public|arguments|from)[a-zA-Z_$][a-zA-Z_$\d]*/g;
+export const strictVariableName = new RegExp(varBegin + strictOnly + varEnd, "g");
