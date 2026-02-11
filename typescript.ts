@@ -31,3 +31,5 @@ const varEnd = ")[^a-zA-Z_$\d])[a-zA-Z_$][a-zA-Z_$\d]*";
 export const variableName = new RegExp(varBegin + varEnd, "g");
 /** matches a valid javascript variable name (strict mode) */
 export const strictVariableName = new RegExp(varBegin + strictOnly + varEnd, "g");
+
+export const number = /^(?<left>[1-9]\d*|0)?(?:\.(?<right>\d+))?(?:[eE](?<pad>[\+\-]?\d+))?$/;
