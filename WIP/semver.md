@@ -63,5 +63,27 @@
 ```
 
 ```ts
-
+(() => {
+    const letter = `[a-zA-Z]`;
+    const positiveDigit = `[1-9]`;
+    const digit = `(?:0|${positiveDigit})`;
+    const digits = `${digit}+`;
+    const nonDigit = `(?:${letter}|\\-)`;
+    const identifierCharacter = `(?:${digit}|${nonDigit})`;
+    const identifierCharacters = `(?:${identifierCharacter}+)`;
+    const numericIdentifier = `(?:0|${positiveDigit}${digits}|${positiveDigit})`;
+    const alphanumericIdentifier = `(?:${nonDigit}|${nonDigit}${identifierCharacters}|${identifierCharacters}${nonDigit}|${identifierCharacters}${nonDigit}${identifierCharacters})`;
+    const buildIdentifier = `(?:${alphanumericIdentifier}|${digits})`;
+    const preReleaseIdentifier = `(?:${alphanumericIdentifier}|${digits})`;
+    const dotSeparatedBuildIdentifiers = `(?:${buildIdentifier}(?:\\.${buildIdentifier})*)`;
+    const build = dotSeparatedBuildIdentifiers;
+    const dotSeparatedPreReleaseIdentifiers = `${preReleaseIdentifier}(?:\\.${preReleaseIdentifier})*`;
+    const preRelease = dotSeparatedPreReleaseIdentifiers;
+    const patch = numericIdentifier;
+    const minor = numericIdentifier;
+    const major = numericIdentifier;
+    const versionCore = `${major}\\.${minor}\\.${patch}`;
+    const validSemver = `${versionCore}|${versionCore}\\-${preRelease}|${versionCore}+${build}|${versionCore}\\-${preRelease}\\+${build}`;
+    console.log(validSemver);
+})();
 ```
